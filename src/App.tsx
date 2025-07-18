@@ -6,10 +6,14 @@ import { VehicleDetailsForm } from './components/VehicleDetailsForm';
 import { DriverInfoForm } from './components/DriverInfoForm';
 import { CoverageForm } from './components/CoverageForm';
 import { QuoteSummary } from './components/QuoteSummary';
+import { Toast } from './components/Toast';
 import { PersonalInfo, VehicleDetails, DriverInfo, CoverageOptions } from './types/insurance';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error' | 'info'>('success');
   
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
     firstName: '',
@@ -46,6 +50,47 @@ function App() {
 
   const nextStep = () => setCurrentStep(currentStep + 1);
   const prevStep = () => setCurrentStep(currentStep - 1);
+  
+  const handleAcceptQuote = () => {
+    setToastMessage('🎉 Quote accepted successfully! Our team will contact you within 24 hours.');
+    setToastType('success');
+    setShowToast(true);
+    
+    // Reset form after a delay
+    setTimeout(() => {
+      setCurrentStep(1);
+      // Reset all form data
+      setPersonalInfo({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: ''
+      });
+      setVehicleDetails({
+        make: '',
+        model: '',
+        year: new Date().getFullYear(),
+        registrationNumber: '',
+        vehicleType: 'car',
+        currentValue: 0
+      });
+      setDriverInfo({
+        dateOfBirth: '',
+        licenseYears: 0,
+        hasAccidents: false,
+        numberOfClaims: 0,
+        occupation: ''
+      });
+      setCoverageOptions({
+        coverageType: 'comprehensive' as const,
+        voluntaryExcess: 0,
+        additionalDrivers: 0,
+        includeBreakdown: false,
+        includeWindscreen: false,
+        includeLegalCover: false
+      });
+    }, 3000);
+  };
 
   return (
     <div className="min-h-screen relative">
@@ -152,12 +197,22 @@ function App() {
                   driverInfo={driverInfo}
                   coverageOptions={coverageOptions}
                   onBack={prevStep}
+                  onAccept={handleAcceptQuote}
                 />
               )}
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Toast Notification */}
+      {showToast && (
+        <Toast
+          message={toastMessage}
+          type={toastType}
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </div>
   );
 }

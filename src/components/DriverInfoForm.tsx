@@ -30,12 +30,12 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Driver Information</h2>
+    <form onSubmit={handleSubmit} className="space-y-6 form-appear">
+      <h2 className="text-2xl font-display text-primary-800 mb-6">Driver Information</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="dateOfBirth" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="dateOfBirth" className="block text-sm font-medium text-primary-700 mb-1">
             Date of Birth
           </label>
           <input
@@ -45,12 +45,12 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
             value={data.dateOfBirth || ''}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
 
         <div>
-          <label htmlFor="licenseYears" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="licenseYears" className="block text-sm font-medium text-primary-700 mb-1">
             Years with License
           </label>
           <input
@@ -61,14 +61,14 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
             onChange={handleChange}
             required
             min="0"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="hasAccidents" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="hasAccidents" className="block text-sm font-medium text-primary-700 mb-1">
             Any Accidents?
           </label>
           <select
@@ -77,7 +77,7 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
             value={data.hasAccidents ? 'yes' : 'no'}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           >
             <option value="no">No</option>
             <option value="yes">Yes</option>
@@ -85,7 +85,7 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
         </div>
 
         <div>
-          <label htmlFor="numberOfClaims" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="numberOfClaims" className="block text-sm font-medium text-primary-700 mb-1">
             Number of Claims
           </label>
           <input
@@ -96,13 +96,13 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
             onChange={handleChange}
             required
             min="0"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="occupation" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="occupation" className="block text-sm font-medium text-primary-700 mb-1">
           Occupation
         </label>
         <input
@@ -112,23 +112,23 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
           value={data.occupation}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-6">
         <button
           type="button"
           onClick={onBack}
-          className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200"
+          className="btn-secondary flex-1"
         >
-          Back
+          ← Back
         </button>
         <button
           type="submit"
-          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+          className="btn-primary flex-1"
         >
-          Next Step
+          Continue to Coverage →
         </button>
       </div>
     </form>

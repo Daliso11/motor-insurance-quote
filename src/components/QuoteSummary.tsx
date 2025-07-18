@@ -7,6 +7,7 @@ interface Props {
   driverInfo: DriverInfo;
   coverageOptions: CoverageOptions;
   onBack: () => void;
+  onAccept: () => void;
 }
 
 export const QuoteSummary: React.FC<Props> = ({ 
@@ -14,7 +15,8 @@ export const QuoteSummary: React.FC<Props> = ({
   vehicleDetails, 
   driverInfo, 
   coverageOptions, 
-  onBack 
+  onBack,
+  onAccept 
 }) => {
   const quote = useMemo(() => {
     // Base rate calculation based on vehicle value and type
@@ -93,64 +95,64 @@ export const QuoteSummary: React.FC<Props> = ({
   }, [vehicleDetails, driverInfo, coverageOptions]);
 
   return (
-<div className="space-y-6">
-      <h2 className="text-2xl font-display text-gradient mb-6">Your Insurance Quote</h2>
+<div className="space-y-6 form-appear">
+      <h2 className="text-2xl font-display text-primary-800 mb-6">Your Insurance Quote</h2>
       
       {/* Customer Information */}
-      <div className="bg-gray-50 p-4 rounded-xl shadow-soft hover:shadow-xl transition-all duration-300">
-        <h3 className="text-primary-600 font-semibold text-lg mb-2">Customer Information</h3>
-        <p className="text-gray-700">{personalInfo.firstName} {personalInfo.lastName}</p>
-        <p className="text-gray-700">{personalInfo.email}</p>
-        <p className="text-gray-700">{personalInfo.phone}</p>
+      <div className="bg-primary-50 p-4 rounded-xl shadow-soft hover:shadow-xl transition-all duration-300 hover-lift">
+        <h3 className="text-primary-700 font-semibold text-lg mb-2">Customer Information</h3>
+        <p className="text-primary-600">{personalInfo.firstName} {personalInfo.lastName}</p>
+        <p className="text-primary-600">{personalInfo.email}</p>
+        <p className="text-primary-600">{personalInfo.phone}</p>
       </div>
 
       {/* Vehicle Information */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="font-semibold text-lg mb-2">Vehicle Details</h3>
-        <p className="text-gray-700">{vehicleDetails.year} {vehicleDetails.make} {vehicleDetails.model}</p>
-        <p className="text-gray-700">Registration: {vehicleDetails.registrationNumber}</p>
-        <p className="text-gray-700">Current Value: {vehicleDetails.currentValue.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</p>
+      <div className="bg-secondary-50 p-4 rounded-xl shadow-soft hover:shadow-xl transition-all duration-300 hover-lift">
+        <h3 className="text-secondary-700 font-semibold text-lg mb-2">Vehicle Details</h3>
+        <p className="text-secondary-600">{vehicleDetails.year} {vehicleDetails.make} {vehicleDetails.model}</p>
+        <p className="text-secondary-600">Registration: {vehicleDetails.registrationNumber}</p>
+        <p className="text-secondary-600">Current Value: {vehicleDetails.currentValue.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</p>
       </div>
 
       {/* Coverage Summary */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="font-semibold text-lg mb-2">Coverage Summary</h3>
-        <p className="text-gray-700">Coverage Type: {coverageOptions.coverageType}</p>
-        <p className="text-gray-700">Voluntary Excess: {coverageOptions.voluntaryExcess.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</p>
-        <p className="text-gray-700">Additional Drivers: {coverageOptions.additionalDrivers}</p>
+      <div className="bg-accent-50 p-4 rounded-xl shadow-soft hover:shadow-xl transition-all duration-300 hover-lift">
+        <h3 className="text-accent-700 font-semibold text-lg mb-2">Coverage Summary</h3>
+        <p className="text-accent-600">Coverage Type: {coverageOptions.coverageType}</p>
+        <p className="text-accent-600">Voluntary Excess: {coverageOptions.voluntaryExcess.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</p>
+        <p className="text-accent-600">Additional Drivers: {coverageOptions.additionalDrivers}</p>
         <div className="mt-2">
-          {coverageOptions.includeBreakdown && <p className="text-gray-700">✓ Breakdown Cover</p>}
-          {coverageOptions.includeWindscreen && <p className="text-gray-700">✓ Windscreen Cover</p>}
-          {coverageOptions.includeLegalCover && <p className="text-gray-700">✓ Legal Cover</p>}
+          {coverageOptions.includeBreakdown && <p className="text-accent-600 fade-in">✓ Breakdown Cover</p>}
+          {coverageOptions.includeWindscreen && <p className="text-accent-600 fade-in">✓ Windscreen Cover</p>}
+          {coverageOptions.includeLegalCover && <p className="text-accent-600 fade-in">✓ Legal Cover</p>}
         </div>
       </div>
 
       {/* Quote Breakdown */}
-      <div className="bg-blue-50 p-6 rounded-lg">
-        <h3 className="font-semibold text-lg mb-4">Quote Breakdown</h3>
+      <div className="bg-primary-100 p-6 rounded-xl shadow-lg scale-in">
+        <h3 className="text-primary-800 font-semibold text-lg mb-4">Quote Breakdown</h3>
         <div className="space-y-2">
           <div className="flex justify-between">
-            <span className="text-gray-700">Base Premium:</span>
+            <span className="text-primary-700">Base Premium:</span>
             <span className="font-medium">{quote.basePrice.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</span>
           </div>
           {quote.additionalCharges > 0 && (
             <div className="flex justify-between">
-              <span className="text-gray-700">Additional Coverage:</span>
+              <span className="text-primary-700">Additional Coverage:</span>
               <span className="font-medium">+{quote.additionalCharges.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</span>
             </div>
           )}
           {quote.discount > 0 && (
             <div className="flex justify-between">
-              <span className="text-gray-700">Voluntary Excess Discount:</span>
+              <span className="text-primary-700">Voluntary Excess Discount:</span>
               <span className="font-medium text-green-600">-{quote.discount.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</span>
             </div>
           )}
-          <div className="border-t pt-2 mt-2">
-            <div className="flex justify-between text-lg font-bold">
+          <div className="border-t-2 border-primary-300 pt-2 mt-2">
+            <div className="flex justify-between text-lg font-bold text-primary-800">
               <span>Annual Total:</span>
               <span>{quote.totalPrice.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</span>
             </div>
-            <div className="flex justify-between text-lg font-bold text-blue-600">
+            <div className="flex justify-between text-lg font-bold text-primary-600 pulse">
               <span>Monthly Payment:</span>
               <span>{quote.monthlyPrice.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</span>
             </div>
@@ -159,20 +161,20 @@ export const QuoteSummary: React.FC<Props> = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-6">
         <button
           type="button"
           onClick={onBack}
-          className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200"
+          className="btn-secondary flex-1"
         >
-          Back
+          ← Back
         </button>
         <button
           type="button"
-          className="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200"
-          onClick={() => alert('Quote saved! A representative will contact you soon.')}
+          className="btn-primary flex-1 gradient-primary"
+          onClick={onAccept}
         >
-          Accept Quote
+          Accept Quote ✓
         </button>
       </div>
     </div>

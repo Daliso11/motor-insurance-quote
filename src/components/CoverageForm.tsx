@@ -25,12 +25,12 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Coverage Options</h2>
+    <form onSubmit={handleSubmit} className="space-y-6 form-appear">
+      <h2 className="text-2xl font-display text-primary-800 mb-6">Coverage Options</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="coverageType" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="coverageType" className="block text-sm font-medium text-primary-700 mb-1">
             Coverage Type
           </label>
           <select
@@ -39,7 +39,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
             value={data.coverageType}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           >
             <option value="">Select Coverage</option>
             <option value="comprehensive">Comprehensive</option>
@@ -49,7 +49,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
         </div>
 
         <div>
-          <label htmlFor="voluntaryExcess" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="voluntaryExcess" className="block text-sm font-medium text-primary-700 mb-1">
             Voluntary Excess
           </label>
           <input
@@ -61,14 +61,14 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
             required
             min="0"
             step="50"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="additionalDrivers" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="additionalDrivers" className="block text-sm font-medium text-primary-700 mb-1">
             Additional Drivers
           </label>
           <input
@@ -80,69 +80,69 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
             required
             min="0"
             max="4"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-primary-700 mb-1">
             Add-on Options
           </label>
-          <div className="flex items-center">
+          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
             <input
               type="checkbox"
               id="includeBreakdown"
               name="includeBreakdown"
               checked={data.includeBreakdown}
               onChange={handleChange}
-              className="mr-2"
+              className="mr-2 w-4 h-4 text-primary-600 border-primary-300 rounded focus:ring-primary-500"
             />
-            <label htmlFor="includeBreakdown" className="text-sm font-medium text-gray-700">
+            <label htmlFor="includeBreakdown" className="text-sm font-medium text-primary-700 cursor-pointer">
               Breakdown Cover
             </label>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
             <input
               type="checkbox"
               id="includeWindscreen"
               name="includeWindscreen"
               checked={data.includeWindscreen}
               onChange={handleChange}
-              className="mr-2"
+              className="mr-2 w-4 h-4 text-primary-600 border-primary-300 rounded focus:ring-primary-500"
             />
-            <label htmlFor="includeWindscreen" className="text-sm font-medium text-gray-700">
+            <label htmlFor="includeWindscreen" className="text-sm font-medium text-primary-700 cursor-pointer">
               Windscreen Cover
             </label>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
             <input
               type="checkbox"
               id="includeLegalCover"
               name="includeLegalCover"
               checked={data.includeLegalCover}
               onChange={handleChange}
-              className="mr-2"
+              className="mr-2 w-4 h-4 text-primary-600 border-primary-300 rounded focus:ring-primary-500"
             />
-            <label htmlFor="includeLegalCover" className="text-sm font-medium text-gray-700">
+            <label htmlFor="includeLegalCover" className="text-sm font-medium text-primary-700 cursor-pointer">
               Legal Cover
             </label>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-6">
         <button
           type="button"
           onClick={onBack}
-          className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200"
+          className="btn-secondary flex-1"
         >
-          Back
+          ← Back
         </button>
         <button
           type="submit"
-          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+          className="btn-primary flex-1"
         >
-          Next Step
+          Get Quote →
         </button>
       </div>
     </form>

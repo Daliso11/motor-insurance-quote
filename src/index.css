@@ -53,6 +53,28 @@
       transform: scale(1.05);
     }
   }
+  
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-out-right {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
 }
 
 @layer components {
@@ -167,6 +189,15 @@
   
   .hover-grow {
     @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  /* Toast animations */
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+  
+  .animate-slide-out-right {
+    animation: slide-out-right 0.3s ease-in;
   }
   
   /* Background image styles */

@@ -26,12 +26,12 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
   const years = Array.from({ length: 30 }, (_, i) => currentYear - i);
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Vehicle Details</h2>
+    <form onSubmit={handleSubmit} className="space-y-6 form-appear">
+      <h2 className="text-2xl font-display text-primary-800 mb-6">Vehicle Details</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="make" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="make" className="block text-sm font-medium text-primary-700 mb-1">
             Vehicle Make
           </label>
           <input
@@ -42,12 +42,12 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
             onChange={handleChange}
             required
             placeholder="e.g., Toyota"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
         
         <div>
-          <label htmlFor="model" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="model" className="block text-sm font-medium text-primary-700 mb-1">
             Vehicle Model
           </label>
           <input
@@ -58,14 +58,14 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
             onChange={handleChange}
             required
             placeholder="e.g., Camry"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="year" className="block text-sm font-medium text-primary-700 mb-1">
             Year
           </label>
           <select
@@ -74,7 +74,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
             value={data.year}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           >
             <option value="">Select Year</option>
             {years.map(year => (
@@ -84,7 +84,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
         </div>
 
         <div>
-          <label htmlFor="vehicleType" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="vehicleType" className="block text-sm font-medium text-primary-700 mb-1">
             Vehicle Type
           </label>
           <select
@@ -93,7 +93,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
             value={data.vehicleType}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           >
             <option value="">Select Type</option>
             <option value="car">Car</option>
@@ -104,7 +104,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
       </div>
 
       <div>
-        <label htmlFor="registrationNumber" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="registrationNumber" className="block text-sm font-medium text-primary-700 mb-1">
           Registration Number
         </label>
         <input
@@ -115,12 +115,12 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
           onChange={handleChange}
           required
           placeholder="e.g., ABC123"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div>
-        <label htmlFor="currentValue" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="currentValue" className="block text-sm font-medium text-primary-700 mb-1">
           Current Vehicle Value (ZMW)
         </label>
         <input
@@ -133,23 +133,23 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
           min="1000"
           step="100"
           placeholder="e.g., 25000"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-6">
         <button
           type="button"
           onClick={onBack}
-          className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200"
+          className="btn-secondary flex-1"
         >
-          Back
+          ← Back
         </button>
         <button
           type="submit"
-          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+          className="btn-primary flex-1"
         >
-          Next Step
+          Continue to Driver Info →
         </button>
       </div>
     </form>
