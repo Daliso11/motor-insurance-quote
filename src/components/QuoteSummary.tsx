@@ -96,7 +96,12 @@ export const QuoteSummary: React.FC<Props> = ({
 
   return (
 <div className="space-y-6 form-appear">
-      <h2 className="text-2xl font-display text-primary-800 mb-6">Your Insurance Quote</h2>
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+          <span className="text-xl">💰</span>
+        </div>
+        <h2 className="text-2xl font-display text-primary-800">Your Insurance Quote</h2>
+      </div>
       
       {/* Customer Information */}
       <div className="bg-primary-50 p-4 rounded-xl shadow-soft hover:shadow-xl transition-all duration-300 hover-lift">

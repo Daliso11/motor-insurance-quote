@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     onChange({
       ...data,
       [e.target.name]: e.target.value
@@ -56,6 +56,62 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
         </div>
       </div>
 
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="nationalId" className="block text-sm font-medium text-primary-700 mb-1">
+            National ID / Passport Number
+          </label>
+          <input
+            type="text"
+            id="nationalId"
+            name="nationalId"
+            value={data.nationalId}
+            onChange={handleChange}
+            required
+            placeholder="e.g., 123456/78/1"
+            className="input-field"
+          />
+        </div>
+        
+        <div>
+          <label htmlFor="gender" className="block text-sm font-medium text-primary-700 mb-1">
+            Gender
+          </label>
+          <select
+            id="gender"
+            name="gender"
+            value={data.gender}
+            onChange={handleChange}
+            required
+            className="input-field"
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="maritalStatus" className="block text-sm font-medium text-primary-700 mb-1">
+          Marital Status
+        </label>
+        <select
+          id="maritalStatus"
+          name="maritalStatus"
+          value={data.maritalStatus}
+          onChange={handleChange}
+          required
+          className="input-field"
+        >
+          <option value="">Select Status</option>
+          <option value="single">Single</option>
+          <option value="married">Married</option>
+          <option value="divorced">Divorced</option>
+          <option value="widowed">Widowed</option>
+        </select>
+      </div>
+
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-1">
           Email Address
@@ -83,9 +139,59 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
           value={data.phone}
           onChange={handleChange}
           required
-          placeholder="e.g., +1234567890"
+          placeholder="e.g., +260 97 1234567"
           className="input-field"
         />
+      </div>
+
+      <div>
+        <label htmlFor="address" className="block text-sm font-medium text-primary-700 mb-1">
+          Street Address
+        </label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          value={data.address}
+          onChange={handleChange}
+          required
+          placeholder="e.g., 123 Independence Avenue"
+          className="input-field"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="city" className="block text-sm font-medium text-primary-700 mb-1">
+            City
+          </label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            value={data.city}
+            onChange={handleChange}
+            required
+            placeholder="e.g., Lusaka"
+            className="input-field"
+          />
+        </div>
+        
+        <div>
+          <label htmlFor="postalCode" className="block text-sm font-medium text-primary-700 mb-1">
+            Postal Code
+          </label>
+          <input
+            type="text"
+            id="postalCode"
+            name="postalCode"
+            value={data.postalCode}
+            onChange={handleChange}
+            required
+            placeholder="e.g., 10101"
+            className="input-field"
+          />
+        </div>
       </div>
 
       <button

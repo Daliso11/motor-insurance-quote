@@ -31,7 +31,12 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 form-appear">
-      <h2 className="text-2xl font-display text-primary-800 mb-6">Driver Information</h2>
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+          <span className="text-xl">📋</span>
+        </div>
+        <h2 className="text-2xl font-display text-primary-800">Driver Information</h2>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>

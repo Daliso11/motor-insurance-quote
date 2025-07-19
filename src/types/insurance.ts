@@ -3,6 +3,12 @@ export interface PersonalInfo {
   lastName: string;
   email: string;
   phone: string;
+  nationalId: string;
+  gender: 'male' | 'female' | '';
+  maritalStatus: 'single' | 'married' | 'divorced' | 'widowed' | '';
+  address: string;
+  city: string;
+  postalCode: string;
 }
 
 export interface VehicleDetails {
