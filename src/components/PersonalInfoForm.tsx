@@ -74,59 +74,59 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
         </div>
         
         <div>
-          <label htmlFor="gender" className="block text-sm font-medium text-primary-700 mb-1">
-            Gender
+          <label htmlFor="nationality" className="block text-sm font-medium text-primary-700 mb-1">
+            Nationality
           </label>
-          <select
-            id="gender"
-            name="gender"
-            value={data.gender}
+          <input
+            type="text"
+            id="nationality"
+            name="nationality"
+            value={data.nationality}
+            onChange={handleChange}
+            required
+            placeholder="e.g., Zambian"
+            className="input-field"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-1">
+            Email Address
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={data.email}
             onChange={handleChange}
             required
             className="input-field"
-          >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+            placeholder="john@example.com"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-primary-700 mb-1">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={data.phone}
+            onChange={handleChange}
+            required
+            placeholder="e.g., +260 97 1234567"
+            className="input-field"
+          />
         </div>
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-1">
-          Email Address
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-          required
-          className="input-field"
-          placeholder="john@example.com"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-primary-700 mb-1">
-          Phone Number
-        </label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={data.phone}
-          onChange={handleChange}
-          required
-          placeholder="e.g., +260 97 1234567"
-          className="input-field"
-        />
-      </div>
-
-      <div>
         <label htmlFor="address" className="block text-sm font-medium text-primary-700 mb-1">
-          Street Address
+          Physical Address
         </label>
         <input
           type="text"
@@ -138,40 +138,6 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
           placeholder="e.g., 123 Independence Avenue"
           className="input-field"
         />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="city" className="block text-sm font-medium text-primary-700 mb-1">
-            City
-          </label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={data.city}
-            onChange={handleChange}
-            required
-            placeholder="e.g., Lusaka"
-            className="input-field"
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="postalCode" className="block text-sm font-medium text-primary-700 mb-1">
-            Postal Code
-          </label>
-          <input
-            type="text"
-            id="postalCode"
-            name="postalCode"
-            value={data.postalCode}
-            onChange={handleChange}
-            required
-            placeholder="e.g., 10101"
-            className="input-field"
-          />
-        </div>
       </div>
 
       <button

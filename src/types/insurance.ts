@@ -4,37 +4,41 @@ export interface PersonalInfo {
   email: string;
   phone: string;
   nationalId: string;
-  gender: 'male' | 'female' | '';
+  nationality: string;
   maritalStatus: 'single' | 'married' | 'divorced' | 'widowed' | '';
   address: string;
-  city: string;
-  postalCode: string;
 }
 
 export interface VehicleDetails {
   make: string;
   model: string;
-  year: number;
+  engineNumber: string;
+  chassisNumber: string;
   registrationNumber: string;
-  vehicleType: 'car' | 'motorcycle' | 'van';
   currentValue: number;
 }
 
 export interface DriverInfo {
   dateOfBirth: string;
-  licenseYears: number;
-  hasAccidents: boolean;
-  numberOfClaims: number;
+  licenseNumber: string;
+  licenseIssuedDate: string;
+  licenseExpiryDate: string;
+  licenseCode: string;
   occupation: string;
 }
 
 export interface CoverageOptions {
   coverageType: 'comprehensive' | 'thirdParty' | 'thirdPartyFireTheft';
-  voluntaryExcess: number;
-  additionalDrivers: number;
-  includeBreakdown: boolean;
-  includeWindscreen: boolean;
-  includeLegalCover: boolean;
+  useOfVehicle: 'private' | 'commercial' | '';
+  coverPeriod: 1 | 3 | 6 | 12;
+  excessAmount: number;
+  includePassengerLiability: boolean;
+  includeRiotStrike: boolean;
+  includeExcessProtector: boolean;
+  includeCarHire: boolean;
+  includeRoadsideAssistance: boolean;
+  includeCrossBorder: boolean;
+  declarationAccepted: boolean;
 }
 
 export interface QuoteData {

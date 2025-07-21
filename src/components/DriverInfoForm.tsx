@@ -1,5 +1,6 @@
 import React from 'react';
 import { DriverInfo } from '../types/insurance';
+import { DateInput } from './DateInput';
 
 interface Props {
   data: DriverInfo;
@@ -11,17 +12,10 @@ interface Props {
 export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    if (name === 'hasAccidents') {
-      onChange({
-        ...data,
-        hasAccidents: value === 'yes'
-      });
-    } else {
-      onChange({
-        ...data,
-        [name]: name === 'licenseYears' || name === 'numberOfClaims' ? Number(value) : value
-      });
-    }
+    onChange({
+      ...data,
+      [name]: value
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,9 +26,6 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
   return (
     <form onSubmit={handleSubmit} className="space-y-6 form-appear">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-          <span className="text-xl">📋</span>
-        </div>
         <h2 className="text-2xl font-display text-primary-800">Driver Information</h2>
       </div>
 
@@ -43,8 +34,7 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
           <label htmlFor="dateOfBirth" className="block text-sm font-medium text-primary-700 mb-1">
             Date of Birth
           </label>
-          <input
-            type="date"
+          <DateInput
             id="dateOfBirth"
             name="dateOfBirth"
             value={data.dateOfBirth || ''}
@@ -55,17 +45,16 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
         </div>
 
         <div>
-          <label htmlFor="licenseYears" className="block text-sm font-medium text-primary-700 mb-1">
-            Years with License
+          <label htmlFor="licenseNumber" className="block text-sm font-medium text-primary-700 mb-1">
+            Driver's License Number
           </label>
           <input
-            type="number"
-            id="licenseYears"
-            name="licenseYears"
-            value={data.licenseYears}
+            type="text"
+            id="licenseNumber"
+            name="licenseNumber"
+            value={data.licenseNumber || ''}
             onChange={handleChange}
             required
-            min="0"
             className="input-field"
           />
         </div>
@@ -73,52 +62,78 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="hasAccidents" className="block text-sm font-medium text-primary-700 mb-1">
-            Any Accidents?
+          <label htmlFor="licenseIssuedDate" className="block text-sm font-medium text-primary-700 mb-1">
+            Date Issued
           </label>
-          <select
-            id="hasAccidents"
-            name="hasAccidents"
-            value={data.hasAccidents ? 'yes' : 'no'}
+          <DateInput
+            id="licenseIssuedDate"
+            name="licenseIssuedDate"
+            value={data.licenseIssuedDate || ''}
             onChange={handleChange}
             required
             className="input-field"
-          >
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
+          />
         </div>
 
         <div>
-          <label htmlFor="numberOfClaims" className="block text-sm font-medium text-primary-700 mb-1">
-            Number of Claims
+          <label htmlFor="licenseExpiryDate" className="block text-sm font-medium text-primary-700 mb-1">
+            Expiry Date
           </label>
-          <input
-            type="number"
-            id="numberOfClaims"
-            name="numberOfClaims"
-            value={data.numberOfClaims}
+          <DateInput
+            id="licenseExpiryDate"
+            name="licenseExpiryDate"
+            value={data.licenseExpiryDate || ''}
             onChange={handleChange}
             required
-            min="0"
             className="input-field"
           />
         </div>
       </div>
 
-      <div>
-        <label htmlFor="occupation" className="block text-sm font-medium text-primary-700 mb-1">
-          Occupation
-        </label>
-        <input
-          type="text"
-          id="occupation"
-          name="occupation"
-          value={data.occupation}
-          onChange={handleChange}
-          required
-          className="input-field"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="licenseCode" className="block text-sm font-medium text-primary-700 mb-1">
+            Driver's Licence Code
+          </label>
+          <select
+            id="licenseCode"
+            name="licenseCode"
+            value={data.licenseCode || ''}
+            onChange={handleChange}
+            required
+            className="input-field"
+          >
+            <option value="">Select License Code</option>
+            <option value="A1">A1</option>
+            <option value="A">A</option>
+            <option value="B1">B1</option>
+            <option value="B">B</option>
+            <option value="C1">C1</option>
+            <option value="C">C</option>
+            <option value="D1">D1</option>
+            <option value="D">D</option>
+            <option value="BE">BE</option>
+            <option value="C1E">C1E</option>
+            <option value="CE">CE</option>
+            <option value="D1E">D1E</option>
+            <option value="DE">DE</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="occupation" className="block text-sm font-medium text-primary-700 mb-1">
+            Occupation
+          </label>
+          <input
+            type="text"
+            id="occupation"
+            name="occupation"
+            value={data.occupation || ''}
+            onChange={handleChange}
+            required
+            className="input-field"
+          />
+        </div>
       </div>
 
       <div className="flex gap-4 mt-6">

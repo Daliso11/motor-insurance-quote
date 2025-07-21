@@ -21,37 +21,41 @@ function App() {
     email: '',
     phone: '',
     nationalId: '',
-    gender: '',
+    nationality: '',
     maritalStatus: '',
-    address: '',
-    city: '',
-    postalCode: ''
+    address: ''
   });
 
   const [vehicleDetails, setVehicleDetails] = useState<VehicleDetails>({
     make: '',
     model: '',
-    year: new Date().getFullYear(),
+    engineNumber: '',
+    chassisNumber: '',
     registrationNumber: '',
-    vehicleType: 'car',
     currentValue: 0
   });
 
   const [driverInfo, setDriverInfo] = useState<DriverInfo>({
     dateOfBirth: '',
-    licenseYears: 0,
-    hasAccidents: false,
-    numberOfClaims: 0,
+    licenseNumber: '',
+    licenseIssuedDate: '',
+    licenseExpiryDate: '',
+    licenseCode: '',
     occupation: ''
   });
 
   const [coverageOptions, setCoverageOptions] = useState<CoverageOptions>({
     coverageType: 'comprehensive' as const,
-    voluntaryExcess: 0,
-    additionalDrivers: 0,
-    includeBreakdown: false,
-    includeWindscreen: false,
-    includeLegalCover: false
+    useOfVehicle: '',
+    coverPeriod: 12,
+    excessAmount: 2500,
+    includePassengerLiability: false,
+    includeRiotStrike: false,
+    includeExcessProtector: false,
+    includeCarHire: false,
+    includeRoadsideAssistance: false,
+    includeCrossBorder: false,
+    declarationAccepted: false,
   });
 
   const nextStep = () => setCurrentStep(currentStep + 1);
@@ -72,34 +76,38 @@ function App() {
         email: '',
         phone: '',
         nationalId: '',
-        gender: '',
+        nationality: '',
         maritalStatus: '',
-        address: '',
-        city: '',
-        postalCode: ''
+        address: ''
       });
       setVehicleDetails({
         make: '',
         model: '',
-        year: new Date().getFullYear(),
+        engineNumber: '',
+        chassisNumber: '',
         registrationNumber: '',
-        vehicleType: 'car',
         currentValue: 0
       });
       setDriverInfo({
         dateOfBirth: '',
-        licenseYears: 0,
-        hasAccidents: false,
-        numberOfClaims: 0,
+        licenseNumber: '',
+        licenseIssuedDate: '',
+        licenseExpiryDate: '',
+        licenseCode: '',
         occupation: ''
       });
       setCoverageOptions({
         coverageType: 'comprehensive' as const,
-        voluntaryExcess: 0,
-        additionalDrivers: 0,
-        includeBreakdown: false,
-        includeWindscreen: false,
-        includeLegalCover: false
+        useOfVehicle: '',
+        coverPeriod: 12,
+        excessAmount: 2500,
+        includePassengerLiability: false,
+        includeRiotStrike: false,
+        includeExcessProtector: false,
+        includeCarHire: false,
+        includeRoadsideAssistance: false,
+        includeCrossBorder: false,
+        declarationAccepted: false,
       });
     }, 3000);
   };

@@ -5,23 +5,8 @@ export const calculateQuote = (data: QuoteData): Quote => {
   let discount = 0;
   let additionalCharges = 0;
 
-  // Vehicle factors
-  const vehicleAge = new Date().getFullYear() - data.vehicle.year;
-  if (vehicleAge > 10) {
-    basePrice += 200;
-  } else if (vehicleAge < 3) {
-    basePrice += 100;
-  }
-
-  // Vehicle value factor
-  basePrice += data.vehicle.currentValue * 0.02;
-
-  // Vehicle type factor
-  if (data.vehicle.vehicleType === 'motorcycle') {
-    basePrice *= 0.8;
-  } else if (data.vehicle.vehicleType === 'van') {
-    basePrice *= 1.2;
-  }
+  // Vehicle value factor - use 2.5% of vehicle value as base
+  basePrice += data.vehicle.currentValue * 0.025;
 
   // Driver age factor
   const driverAge = new Date().getFullYear() - new Date(data.driver.dateOfBirth).getFullYear();
@@ -31,19 +16,21 @@ export const calculateQuote = (data: QuoteData): Quote => {
     discount += basePrice * 0.1;
   }
 
-  // Experience factor
-  if (data.driver.licenseYears > 10) {
-    discount += basePrice * 0.15;
-  } else if (data.driver.licenseYears < 2) {
-    basePrice *= 1.3;
+  // Experience factor based on license issue date
+  if (data.driver.licenseIssuedDate) {
+    const licenseIssueDate = new Date(data.driver.licenseIssuedDate);
+    const today = new Date();
+    const yearsSinceLicense = (today.getTime() - licenseIssueDate.getTime()) / (1000 * 60 * 60 * 24 * 365);
+    
+    if (yearsSinceLicense > 10) {
+      discount += basePrice * 0.15;
+    } else if (yearsSinceLicense < 2) {
+      basePrice *= 1.3;
+    }
   }
 
-  // Claims history
-  if (data.driver.hasAccidents || data.driver.numberOfClaims > 0) {
-    basePrice += data.driver.numberOfClaims * 200;
-  } else {
-    discount += basePrice * 0.2; // No claims bonus
-  }
+  // No claims bonus - always apply since we don't track claims anymore
+  discount += basePrice * 0.2;
 
   // Coverage type
   if (data.coverage.coverageType === 'comprehensive') {
@@ -55,20 +42,40 @@ export const calculateQuote = (data: QuoteData): Quote => {
   }
 
   // Additional options
-  if (data.coverage.includeBreakdown) additionalCharges += 80;
-  if (data.coverage.includeWindscreen) additionalCharges += 60;
-  if (data.coverage.includeLegalCover) additionalCharges += 40;
+  if (data.coverage.includePassengerLiability) additionalCharges += 120;
+  if (data.coverage.includeRiotStrike) additionalCharges += 80;
+  if (data.coverage.includeExcessProtector) additionalCharges += 100;
+  if (data.coverage.includeCarHire) additionalCharges += 150;
+  if (data.coverage.includeRoadsideAssistance) additionalCharges += 90;
+  if (data.coverage.includeCrossBorder) additionalCharges += 110;
   
-  // Additional drivers
-  additionalCharges += data.coverage.additionalDrivers * 150;
-
-  // Voluntary excess discount
-  if (data.coverage.voluntaryExcess >= 500) {
-    discount += basePrice * 0.1;
+  // Commercial use surcharge
+  if (data.coverage.useOfVehicle === 'commercial') {
+    additionalCharges += basePrice * 0.25; // 25% surcharge for commercial use
+  }
+  
+  // Apply excess discount
+  if (data.coverage.excessAmount > 5000) {
+    discount += basePrice * 0.05; // 5% discount for high excess
+  } else if (data.coverage.excessAmount > 10000) {
+    discount += basePrice * 0.10; // 10% discount for very high excess
   }
 
-  const totalPrice = Math.max(basePrice - discount + additionalCharges, 200);
-  const monthlyPrice = totalPrice / 12;
+  // Calculate annual price first
+  const annualPrice = Math.max(basePrice - discount + additionalCharges, 200);
+  
+  // Adjust total price based on cover period
+  let totalPrice = annualPrice;
+  if (data.coverage.coverPeriod === 1) {
+    totalPrice = annualPrice / 12; // 1 month
+  } else if (data.coverage.coverPeriod === 3) {
+    totalPrice = (annualPrice / 12) * 3; // 3 months
+  } else if (data.coverage.coverPeriod === 6) {
+    totalPrice = (annualPrice / 12) * 6; // 6 months
+  }
+  // For 12 months, totalPrice remains as annualPrice
+  
+  const monthlyPrice = annualPrice / 12;
 
   return {
     basePrice: Math.round(basePrice),

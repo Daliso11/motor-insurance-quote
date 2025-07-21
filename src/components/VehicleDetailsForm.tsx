@@ -13,7 +13,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
     const { name, value } = e.target;
     onChange({
       ...data,
-      [name]: name === 'year' || name === 'currentValue' ? Number(value) : value
+      [name]: name === 'currentValue' ? Number(value) : value
     });
   };
 
@@ -21,9 +21,6 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
     e.preventDefault();
     onNext();
   };
-
-  const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 30 }, (_, i) => currentYear - i);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 form-appear">
@@ -65,76 +62,72 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="year" className="block text-sm font-medium text-primary-700 mb-1">
-            Year
+          <label htmlFor="engineNumber" className="block text-sm font-medium text-primary-700 mb-1">
+            Engine Number
           </label>
-          <select
-            id="year"
-            name="year"
-            value={data.year}
+          <input
+            type="text"
+            id="engineNumber"
+            name="engineNumber"
+            value={data.engineNumber}
             onChange={handleChange}
             required
+            placeholder="e.g., ABCD1234567890"
             className="input-field"
-          >
-            <option value="">Select Year</option>
-            {years.map(year => (
-              <option key={year} value={year}>{year}</option>
-            ))}
-          </select>
+          />
         </div>
 
         <div>
-          <label htmlFor="vehicleType" className="block text-sm font-medium text-primary-700 mb-1">
-            Vehicle Type
+          <label htmlFor="chassisNumber" className="block text-sm font-medium text-primary-700 mb-1">
+            Chassis Number
           </label>
-          <select
-            id="vehicleType"
-            name="vehicleType"
-            value={data.vehicleType}
+          <input
+            type="text"
+            id="chassisNumber"
+            name="chassisNumber"
+            value={data.chassisNumber}
             onChange={handleChange}
             required
+            placeholder="e.g., VIN1234567890123"
             className="input-field"
-          >
-            <option value="">Select Type</option>
-            <option value="car">Car</option>
-            <option value="motorcycle">Motorcycle</option>
-            <option value="van">Van</option>
-          </select>
+          />
         </div>
       </div>
 
-      <div>
-        <label htmlFor="registrationNumber" className="block text-sm font-medium text-primary-700 mb-1">
-          Registration Number
-        </label>
-        <input
-          type="text"
-          id="registrationNumber"
-          name="registrationNumber"
-          value={data.registrationNumber}
-          onChange={handleChange}
-          required
-          placeholder="e.g., ABC123"
-          className="input-field"
-        />
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="registrationNumber" className="block text-sm font-medium text-primary-700 mb-1">
+            Registration Number
+          </label>
+          <input
+            type="text"
+            id="registrationNumber"
+            name="registrationNumber"
+            value={data.registrationNumber}
+            onChange={handleChange}
+            required
+            placeholder="e.g., ABC123"
+            className="input-field"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="currentValue" className="block text-sm font-medium text-primary-700 mb-1">
-          Current Vehicle Value (ZMW)
-        </label>
-        <input
-          type="number"
-          id="currentValue"
-          name="currentValue"
-          value={data.currentValue}
-          onChange={handleChange}
-          required
-          min="1000"
-          step="100"
-          placeholder="e.g., 25000"
-          className="input-field"
-        />
+        <div>
+          <label htmlFor="currentValue" className="block text-sm font-medium text-primary-700 mb-1">
+            Current Vehicle Value (ZMW)
+          </label>
+          <input
+            type="number"
+            id="currentValue"
+            name="currentValue"
+            value={data.currentValue}
+            onChange={handleChange}
+            required
+            min="1000"
+            step="100"
+            placeholder="e.g., 25000"
+            className="input-field"
+          />
+        </div>
       </div>
 
       <div className="flex gap-4 mt-6">
