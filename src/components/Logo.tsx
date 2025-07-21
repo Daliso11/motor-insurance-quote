@@ -5,7 +5,7 @@ export const Logo: React.FC = () => {
     <div className="flex items-center justify-center mb-8">
       <div className="relative">
         {/* Main logo container with solid background */}
-        <div className="relative w-20 h-20 rounded-2xl bg-primary-500 p-4 shadow-lg animate-float">
+        <div className="relative w-20 h-20 rounded-2xl bg-primary-500 p-4 shadow-lg">
           {/* Car icon SVG */}
           <svg
             viewBox="0 0 24 24"
@@ -25,11 +25,11 @@ export const Logo: React.FC = () => {
           </svg>
         </div>
         {/* Decorative elements */}
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent-400 rounded-full opacity-60 animate-pulse-soft"></div>
-        <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-secondary-400 rounded-full opacity-60 animate-pulse-soft" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent-400 rounded-full"></div>
+        <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-secondary-400 rounded-full"></div>
       </div>
       <div className="ml-4">
-        <h1 className="text-3xl font-display font-bold text-gradient">InsureQuick</h1>
+        <h1 className="text-3xl font-display font-bold text-gradient">Yenza</h1>
         <p className="text-sm text-neutral-600">Your trusted insurance partner</p>
       </div>
     </div>

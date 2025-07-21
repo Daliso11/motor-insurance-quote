@@ -110,7 +110,7 @@ function App() {
       <div 
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: 'url(/design.png)',
+          backgroundImage: 'url(/lusaka.png)',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center bottom',
           backgroundSize: 'contain'

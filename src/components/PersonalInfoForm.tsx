@@ -59,7 +59,7 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="nationalId" className="block text-sm font-medium text-primary-700 mb-1">
-            National ID / Passport Number
+            NRC / Passport Number
           </label>
           <input
             type="text"
@@ -90,26 +90,6 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
             <option value="female">Female</option>
           </select>
         </div>
-      </div>
-
-      <div>
-        <label htmlFor="maritalStatus" className="block text-sm font-medium text-primary-700 mb-1">
-          Marital Status
-        </label>
-        <select
-          id="maritalStatus"
-          name="maritalStatus"
-          value={data.maritalStatus}
-          onChange={handleChange}
-          required
-          className="input-field"
-        >
-          <option value="">Select Status</option>
-          <option value="single">Single</option>
-          <option value="married">Married</option>
-          <option value="divorced">Divorced</option>
-          <option value="widowed">Widowed</option>
-        </select>
       </div>
 
       <div>
