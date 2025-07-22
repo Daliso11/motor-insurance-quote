@@ -65,8 +65,9 @@ export const calculateQuote = (data: QuoteData): Quote => {
   // Calculate annual price first
   const annualPrice = Math.max(basePrice - discount + additionalCharges, 200);
   
-  // Adjust total price based on cover period
-  let totalPrice = annualPrice;
+  // Calculate total price based on cover period
+  let totalPrice = annualPrice; // Default for 12 months
+  
   if (data.coverage.coverPeriod === 1) {
     totalPrice = annualPrice / 12; // 1 month
   } else if (data.coverage.coverPeriod === 3) {
@@ -76,13 +77,14 @@ export const calculateQuote = (data: QuoteData): Quote => {
   }
   // For 12 months, totalPrice remains as annualPrice
   
-  const monthlyPrice = annualPrice / 12;
+  // Monthly payment is total price divided by coverage period
+  const monthlyPrice = totalPrice / data.coverage.coverPeriod;
 
   return {
-    basePrice: Math.round(basePrice),
-    discount: Math.round(discount),
-    additionalCharges: Math.round(additionalCharges),
-    totalPrice: Math.round(totalPrice),
-    monthlyPrice: Math.round(monthlyPrice * 100) / 100
+    basePrice: Math.round(basePrice), // Always show annual base premium
+    discount: Math.round(discount), // Always show annual discount
+    additionalCharges: Math.round(additionalCharges), // Always show annual additional charges
+    totalPrice: Math.round(totalPrice), // Period-adjusted total
+    monthlyPrice: Math.round(monthlyPrice * 100) / 100 // Total divided by period
   };
 };

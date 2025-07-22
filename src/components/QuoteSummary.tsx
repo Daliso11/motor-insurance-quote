@@ -87,8 +87,9 @@ export const QuoteSummary: React.FC<Props> = ({
     // Calculate annual price first
     const annualPrice = basePremium + additionalCharges - excessDiscount;
     
-    // Adjust total price based on cover period
-    let totalPrice = annualPrice;
+    // Calculate total price based on cover period
+    let totalPrice = annualPrice; // Default for 12 months
+    
     if (coverageOptions.coverPeriod === 1) {
       totalPrice = annualPrice / 12; // 1 month
     } else if (coverageOptions.coverPeriod === 3) {
@@ -98,14 +99,24 @@ export const QuoteSummary: React.FC<Props> = ({
     }
     // For 12 months, totalPrice remains as annualPrice
     
-    const monthlyPrice = annualPrice / 12;
+    // Monthly payment is total price divided by coverage period
+    const monthlyPrice = totalPrice / coverageOptions.coverPeriod;
+
+    // Debug logging
+    console.log('Quote Calculation Debug:', {
+      coverPeriod: coverageOptions.coverPeriod,
+      annualBasePremium: basePremium,
+      annualPrice: annualPrice,
+      totalPrice: totalPrice,
+      monthlyPrice: monthlyPrice
+    });
 
     return {
-      basePrice: basePremium,
-      discount: excessDiscount,
-      additionalCharges: additionalCharges,
-      totalPrice: totalPrice,
-      monthlyPrice: monthlyPrice,
+      basePrice: basePremium, // Always show annual base premium
+      discount: excessDiscount, // Always show annual discount
+      additionalCharges: additionalCharges, // Always show annual additional charges
+      totalPrice: totalPrice, // Period-adjusted total
+      monthlyPrice: monthlyPrice, // Total divided by period
       ageFactor,
       experienceFactor,
       accidentFactor,
