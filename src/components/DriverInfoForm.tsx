@@ -23,6 +23,13 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
     onNext();
   };
 
+  // Calculate date constraints
+  const today = new Date();
+  const maxDOB = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()).toISOString().split('T')[0]; // Must be at least 18 years old
+  const minDOB = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate()).toISOString().split('T')[0]; // Maximum 100 years old
+  const todayStr = today.toISOString().split('T')[0];
+  const futureDate = new Date(today.getFullYear() + 10, today.getMonth(), today.getDate()).toISOString().split('T')[0]; // License can expire up to 10 years in future
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6 form-appear">
       <div className="flex items-center gap-3 mb-6">
@@ -32,7 +39,7 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="dateOfBirth" className="block text-sm font-medium text-primary-700 mb-1">
-            Date of Birth
+            Date of Birth <span className="text-red-500">*</span>
           </label>
           <DateInput
             id="dateOfBirth"
@@ -41,12 +48,14 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
             onChange={handleChange}
             required
             className="input-field"
+            min={minDOB}
+            max={maxDOB}
           />
         </div>
 
         <div>
           <label htmlFor="licenseNumber" className="block text-sm font-medium text-primary-700 mb-1">
-            Driver's License Number
+            Driver's License Number <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -63,7 +72,7 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="licenseIssuedDate" className="block text-sm font-medium text-primary-700 mb-1">
-            Date Issued
+            Date Issued <span className="text-red-500">*</span>
           </label>
           <DateInput
             id="licenseIssuedDate"
@@ -72,12 +81,13 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
             onChange={handleChange}
             required
             className="input-field"
+            max={todayStr}
           />
         </div>
 
         <div>
           <label htmlFor="licenseExpiryDate" className="block text-sm font-medium text-primary-700 mb-1">
-            Expiry Date
+            Expiry Date <span className="text-red-500">*</span>
           </label>
           <DateInput
             id="licenseExpiryDate"
@@ -86,6 +96,8 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
             onChange={handleChange}
             required
             className="input-field"
+            min={todayStr}
+            max={futureDate}
           />
         </div>
       </div>
@@ -93,7 +105,7 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="licenseCode" className="block text-sm font-medium text-primary-700 mb-1">
-            Driver's Licence Code
+            Driver's Licence Code <span className="text-red-500">*</span>
           </label>
           <select
             id="licenseCode"
@@ -130,7 +142,6 @@ export const DriverInfoForm: React.FC<Props> = ({ data, onChange, onNext, onBack
             name="occupation"
             value={data.occupation || ''}
             onChange={handleChange}
-            required
             className="input-field"
           />
         </div>

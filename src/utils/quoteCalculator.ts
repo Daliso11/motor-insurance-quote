@@ -6,7 +6,8 @@ export const calculateQuote = (data: QuoteData): Quote => {
   let additionalCharges = 0;
 
   // Vehicle value factor - use 2.5% of vehicle value as base
-  basePrice += data.vehicle.currentValue * 0.025;
+  const vehicleValue = typeof data.vehicle.currentValue === 'number' ? data.vehicle.currentValue : 0;
+  basePrice += vehicleValue * 0.025;
 
   // Driver age factor
   const driverAge = new Date().getFullYear() - new Date(data.driver.dateOfBirth).getFullYear();

@@ -18,9 +18,12 @@ export const QuoteSummary: React.FC<Props> = ({
   onBack,
   onAccept 
 }) => {
+  // Extract vehicle value for display
+  const displayVehicleValue = typeof vehicleDetails.currentValue === 'number' ? vehicleDetails.currentValue : 0;
+  
   const quote = useMemo(() => {
     // Base rate calculation based on vehicle value
-    const vehicleValue = vehicleDetails.currentValue;
+    const vehicleValue = typeof vehicleDetails.currentValue === 'number' ? vehicleDetails.currentValue : 0;
     // Default base rate of 2.8% of vehicle value
     let baseRate = vehicleValue * 0.028;
 
@@ -189,7 +192,7 @@ export const QuoteSummary: React.FC<Props> = ({
             </div>
             <div className="flex justify-between">
               <span className="text-secondary-600">Current Value:</span>
-              <span className="text-secondary-700 font-medium">{vehicleDetails.currentValue.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</span>
+              <span className="text-secondary-700 font-medium">{displayVehicleValue.toLocaleString('en-ZM', { style: 'currency', currency: 'ZMW' })}</span>
             </div>
           </div>
         </div>

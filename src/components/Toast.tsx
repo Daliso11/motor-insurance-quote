@@ -24,7 +24,7 @@ export const Toast: React.FC<ToastProps> = ({
   const getTypeStyles = () => {
     switch (type) {
       case 'success':
-        return 'bg-green-500 text-white';
+        return 'bg-[#4cdd80] text-white';
       case 'error':
         return 'bg-red-500 text-white';
       case 'info':
@@ -59,7 +59,7 @@ export const Toast: React.FC<ToastProps> = ({
 
   return (
     <div className="fixed top-4 right-4 z-50 animate-slide-in-right">
-      <div className={`${getTypeStyles()} rounded-lg shadow-xl p-4 flex items-center min-w-[300px] max-w-md transform transition-all duration-300 hover:scale-105`}>
+      <div className={`${getTypeStyles()} rounded-lg shadow-xl p-4 flex items-center min-w-[300px] max-w-md`}>
         {getIcon()}
         <p className="flex-1 font-medium">{message}</p>
         <button

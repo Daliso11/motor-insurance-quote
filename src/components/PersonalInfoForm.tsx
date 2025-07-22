@@ -27,7 +27,7 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-primary-700 mb-1">
-            First Name
+            First Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -42,7 +42,7 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
         
         <div>
           <label htmlFor="lastName" className="block text-sm font-medium text-primary-700 mb-1">
-            Last Name
+            Last Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -59,7 +59,7 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="nationalId" className="block text-sm font-medium text-primary-700 mb-1">
-            NRC / Passport Number
+            NRC / Passport Number <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -75,7 +75,7 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
         
         <div>
           <label htmlFor="nationality" className="block text-sm font-medium text-primary-700 mb-1">
-            Nationality
+            Nationality <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -93,7 +93,7 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-1">
-            Email Address
+            Email Address <span className="text-red-500">*</span>
           </label>
           <input
             type="email"
@@ -109,7 +109,7 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
 
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-primary-700 mb-1">
-            Phone Number
+            Phone Number <span className="text-red-500">*</span>
           </label>
           <input
             type="tel"
@@ -126,7 +126,7 @@ export const PersonalInfoForm: React.FC<Props> = ({ data, onChange, onNext }) =>
 
       <div>
         <label htmlFor="address" className="block text-sm font-medium text-primary-700 mb-1">
-          Physical Address
+          Physical Address <span className="text-red-500">*</span>
         </label>
         <input
           type="text"

@@ -33,7 +33,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="coverageType" className="block text-sm font-medium text-primary-700 mb-1">
-            Coverage Type
+            Coverage Type <span className="text-red-500">*</span>
           </label>
           <select
             id="coverageType"
@@ -52,7 +52,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
 
         <div>
           <label htmlFor="useOfVehicle" className="block text-sm font-medium text-primary-700 mb-1">
-            Use Of Vehicle
+            Use Of Vehicle <span className="text-red-500">*</span>
           </label>
           <select
             id="useOfVehicle"
@@ -72,7 +72,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="coverPeriod" className="block text-sm font-medium text-primary-700 mb-1">
-            Preferred Insurance Cover Period
+            Preferred Insurance Cover Period <span className="text-red-500">*</span>
           </label>
           <select
             id="coverPeriod"
@@ -99,7 +99,6 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
             name="excessAmount"
             value={data.excessAmount}
             onChange={handleChange}
-            required
             min="0"
             step="500"
             className="input-field"
@@ -112,7 +111,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
           Add-on Options
         </label>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
+          <div className={`flex items-center hover-lift p-2 rounded-lg transition-all duration-200 ${data.includePassengerLiability ? 'bg-[#4cdd80]/10 border border-[#4cdd80]/30' : 'hover:bg-primary-50'}`}>
             <input
               type="checkbox"
               id="includePassengerLiability"
@@ -125,7 +124,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
               Passenger Liability
             </label>
           </div>
-          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
+          <div className={`flex items-center hover-lift p-2 rounded-lg transition-all duration-200 ${data.includeRiotStrike ? 'bg-[#4cdd80]/10 border border-[#4cdd80]/30' : 'hover:bg-primary-50'}`}>
             <input
               type="checkbox"
               id="includeRiotStrike"
@@ -138,7 +137,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
               Riot, Strike & Civil Commotion
             </label>
           </div>
-          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
+          <div className={`flex items-center hover-lift p-2 rounded-lg transition-all duration-200 ${data.includeExcessProtector ? 'bg-[#4cdd80]/10 border border-[#4cdd80]/30' : 'hover:bg-primary-50'}`}>
             <input
               type="checkbox"
               id="includeExcessProtector"
@@ -151,7 +150,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
               Excess Protector
             </label>
           </div>
-          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
+          <div className={`flex items-center hover-lift p-2 rounded-lg transition-all duration-200 ${data.includeCarHire ? 'bg-[#4cdd80]/10 border border-[#4cdd80]/30' : 'hover:bg-primary-50'}`}>
             <input
               type="checkbox"
               id="includeCarHire"
@@ -164,7 +163,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
               Car Hire (Post-accident)
             </label>
           </div>
-          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
+          <div className={`flex items-center hover-lift p-2 rounded-lg transition-all duration-200 ${data.includeRoadsideAssistance ? 'bg-[#4cdd80]/10 border border-[#4cdd80]/30' : 'hover:bg-primary-50'}`}>
             <input
               type="checkbox"
               id="includeRoadsideAssistance"
@@ -177,7 +176,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
               Roadside Assistance
             </label>
           </div>
-          <div className="flex items-center hover-lift p-2 rounded-lg hover:bg-primary-50 transition-all duration-200">
+          <div className={`flex items-center hover-lift p-2 rounded-lg transition-all duration-200 ${data.includeCrossBorder ? 'bg-[#4cdd80]/10 border border-[#4cdd80]/30' : 'hover:bg-primary-50'}`}>
             <input
               type="checkbox"
               id="includeCrossBorder"
@@ -208,7 +207,7 @@ export const CoverageForm: React.FC<Props> = ({ data, onChange, onNext, onBack }
             className="mr-2 w-4 h-4 text-primary-600 border-primary-300 rounded focus:ring-primary-500"
           />
           <label htmlFor="declarationAccepted" className="text-sm font-medium text-primary-700 cursor-pointer">
-            I accept the declaration
+            I accept the declaration <span className="text-red-500">*</span>
           </label>
         </div>
       </div>

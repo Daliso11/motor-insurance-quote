@@ -13,7 +13,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
     const { name, value } = e.target;
     onChange({
       ...data,
-      [name]: name === 'currentValue' ? Number(value) : value
+      [name]: name === 'currentValue' ? (value === '' ? '' : Number(value)) : value
     });
   };
 
@@ -29,7 +29,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="make" className="block text-sm font-medium text-primary-700 mb-1">
-            Vehicle Make
+            Vehicle Make <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -45,7 +45,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
         
         <div>
           <label htmlFor="model" className="block text-sm font-medium text-primary-700 mb-1">
-            Vehicle Model
+            Vehicle Model <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -63,7 +63,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="engineNumber" className="block text-sm font-medium text-primary-700 mb-1">
-            Engine Number
+            Engine Number <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -79,7 +79,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
 
         <div>
           <label htmlFor="chassisNumber" className="block text-sm font-medium text-primary-700 mb-1">
-            Chassis Number
+            Chassis Number <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -97,7 +97,7 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="registrationNumber" className="block text-sm font-medium text-primary-700 mb-1">
-            Registration Number
+            Registration Number <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -113,13 +113,13 @@ export const VehicleDetailsForm: React.FC<Props> = ({ data, onChange, onNext, on
 
         <div>
           <label htmlFor="currentValue" className="block text-sm font-medium text-primary-700 mb-1">
-            Current Vehicle Value (ZMW)
+            Current Vehicle Value (ZMW) <span className="text-red-500">*</span>
           </label>
           <input
             type="number"
             id="currentValue"
             name="currentValue"
-            value={data.currentValue}
+            value={data.currentValue === 0 ? '' : data.currentValue}
             onChange={handleChange}
             required
             min="1000"

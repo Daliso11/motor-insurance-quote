@@ -145,7 +145,7 @@ function App() {
                 {/* Progress line */}
                 <div className="absolute left-0 right-0 top-5 h-0.5 bg-neutral-200"></div>
                 <div 
-                  className="absolute left-0 top-5 h-0.5 bg-primary-500 transition-all duration-500"
+                  className="absolute left-0 top-5 h-0.5 bg-[#4cdd80] transition-all duration-500"
                   style={{ width: `${((currentStep - 1) / 4) * 100}%` }}
                 ></div>
                 
@@ -164,7 +164,9 @@ function App() {
                   )},
                   { num: 3, label: 'Driver', icon: (
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                      <path fillRule="evenodd" d="M10 3a7 7 0 100 14 7 7 0 000-14zM2 10a8 8 0 1116 0 8 8 0 01-16 0z" clipRule="evenodd" />
+                      <path d="M10 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                      <path d="M9.25 5a.75.75 0 011.5 0v2.25a.75.75 0 01-1.5 0V5zM9.25 12.75a.75.75 0 011.5 0V15a.75.75 0 01-1.5 0v-2.25zM5 9.25a.75.75 0 000 1.5h2.25a.75.75 0 000-1.5H5zM12.75 9.25a.75.75 0 000 1.5H15a.75.75 0 000-1.5h-2.25z" />
                     </svg>
                   )},
                   { num: 4, label: 'Coverage', icon: (
@@ -179,22 +181,28 @@ function App() {
                     </svg>
                   )}
                 ].map((step) => (
-                  <div key={step.num} className="relative z-10 flex-1 flex flex-col items-center">
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        step.num <= currentStep
-                          ? 'bg-primary-500 text-white shadow-lg scale-110'
-                          : 'bg-white border-2 border-neutral-300 text-neutral-500'
-                      }`}
-                    >
-                      {step.icon}
-                    </div>
-                    <span className={`mt-2 text-xs font-medium transition-all duration-300 ${
-                      step.num <= currentStep ? 'text-primary-700' : 'text-neutral-500'
-                    }`}>
-                      {step.label}
-                    </span>
+                <div key={step.num} className="relative z-10 flex-1 flex flex-col items-center">
+                  <div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      step.num < currentStep
+                        ? 'bg-[#4cdd80] text-white shadow-lg shadow-[#4cdd80]/30'
+                        : step.num === currentStep
+                        ? 'bg-primary-500 text-white shadow-lg scale-110'
+                        : 'bg-white border-2 border-neutral-300 text-neutral-500'
+                    }`}
+                  >
+                    {step.icon}
                   </div>
+                  <span className={`mt-2 text-xs font-medium transition-all duration-300 ${
+                    step.num < currentStep 
+                      ? 'text-[#4cdd80]' 
+                      : step.num === currentStep 
+                      ? 'text-primary-700' 
+                      : 'text-neutral-500'
+                  }`}>
+                    {step.label}
+                  </span>
+                </div>
                 ))}
               </div>
             </div>

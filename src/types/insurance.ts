@@ -15,7 +15,7 @@ export interface VehicleDetails {
   engineNumber: string;
   chassisNumber: string;
   registrationNumber: string;
-  currentValue: number;
+  currentValue: number | '';
 }
 
 export interface DriverInfo {

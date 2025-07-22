@@ -109,8 +109,9 @@
            hover:shadow-md focus:shadow-lg;
   }
   
-  .input-field:focus {
-    animation: pulse 0.5s ease-in-out;
+  /* Green accent for valid/completed inputs */
+  .input-field:valid:not(:placeholder-shown) {
+    @apply border-[#4cdd80]/30;
   }
   
   /* Card styles */
